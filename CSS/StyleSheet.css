@@ -340,7 +340,9 @@
 }
  .IconosAmenazas{
      animation: float 6s ease-in-out infinite;
+     cursor: pointer;
 }
  .IconosAmenazas02{
      animation: float02 6s ease-in-out infinite;
+     cursor: pointer;
 }

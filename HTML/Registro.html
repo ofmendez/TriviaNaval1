@@ -1,44 +1,34 @@
-<head>
-   <title>Proofpoint Trivia</title>
-   <link rel="stylesheet" href="../CSS/StyleSheet.css">
-   <link rel="icon" type="image/x-icon" href="../Images/Favicon.png">
-</head>
-<body>
-   <div class="Wrapper">
-      <div class="Content">
-         <video id="background-video" autoplay loop muted poster="../Images/Fondo.jpg" >
-            <source src="../Images/FondoAgua.mp4" type="video/mp4">
-         </video>
-         <div class="ImagenLogoSuperior">
-            <img src="../Images/Logo.svg" />
-         </div>
-         <div class="FondoTrasparenciaBarco">
-            <div style="height:20.3vh;"></div>
-            <h2>REGISTRO</h2>
-            <div style="height:20vh;"></div>
-         </div>
-         <div style="position:absolute; bottom:-3px; width:100%; ">
-            <img src="../Images/BordeCurva.svg" class="CurvaSeccion" />
-            <div class="CuerpoContenido" style="background-color:#013b58; margin-top:-0.6vh;">
-               <div style="height:4vh;"></div>
-               <p>
-                  <input type="text" placeholder="NOMBRE" id="nombreJugador" name="nombreJugador" required minlength="4" maxlength="50">
-               </p>
-               <div style="height:3vh;"></div>
-               <p>
-                  <input type="text" placeholder="APELLIDO" id="apellidoJugador" name="apellidoJugador" required minlength="4" maxlength="50">
-               </p>
-               <div style="height:3vh;"></div>
-               <p>
-                  <input type="email" placeholder="E-MAIL" id="mailJugador" name="mailJugador" required minlength="4" maxlength="80">
-               </p>
-               <div style="height:3vh;"></div>
-               <p>
-                  <button type="submit"><a class="BotonGradiente" style="min-width: 25vh;">Ingresar</a></button>
-               </p>
-               <div style="height:6vh;"></div>
-            </div>
-         </div>
-      </div>
+<video id="background-video" autoplay loop muted poster="../Images/Fondo.jpg" >
+   <source src="../Images/FondoAgua.mp4" type="video/mp4">
+</video>
+<div class="ImagenLogoSuperior">
+   <img src="../Images/Logo.svg" />
+</div>
+<div class="FondoTrasparenciaBarco">
+   <div style="height:20.3vh;"></div>
+   <h2>REGISTRO</h2>
+   <div style="height:20vh;"></div>
+</div>
+<div style="position:absolute; bottom:-3px; width:100%; ">
+   <img src="../Images/BordeCurva.svg" class="CurvaSeccion" />
+   <div class="CuerpoContenido" style="background-color:#013b58; margin-top:-0.6vh;">
+      <div style="height:4vh;"></div>
+      <p>
+         <input type="text" placeholder="NOMBRE" id="nombreJugador" name="nombreJugador" required minlength="4" maxlength="50">
+      </p>
+      <div style="height:3vh;"></div>
+      <p>
+         <input type="text" placeholder="APELLIDO" id="apellidoJugador" name="apellidoJugador" required minlength="4" maxlength="50">
+      </p>
+      <div style="height:3vh;"></div>
+      <p>
+         <input type="email" placeholder="E-MAIL" id="mailJugador" name="mailJugador" required minlength="4" maxlength="80">
+      </p>
+      <div style="height:3vh;"></div>
+      <p>
+         <button type="submit"><a href="javascript:TryLogin()" class="BotonGradiente" style="min-width: 25vh;">Ingresar</a></button>
+      </p>
+      <div style="height:6vh;"></div>
    </div>
-</body>
+</div>
+
