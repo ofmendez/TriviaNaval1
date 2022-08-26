@@ -8,11 +8,11 @@
 }
  @font-face {
      font-family: BebasNeueBook;
-     src: url(Fonts/BebasNeueBook.woff);
+     src: url(../Fonts/BebasNeueBook.woff);
 }
  @font-face {
      font-family: BebasNeueBold;
-     src: url(Fonts/BebasNeueBold.woff);
+     src: url(../Fonts/BebasNeueBold.woff);
 }
  @font-face {
      font-family: Montserrat;
@@ -164,7 +164,7 @@
 }
 /* Pagina Registro */
  .FondoTrasparenciaBarco{
-     background-image: url("Images/RegistroFondo.png");
+     background-image: url("../Images/RegistroFondo.png");
      background-size: cover;
      margin-top:-8vh;
 }
@@ -236,7 +236,7 @@
      align-items: center;
      justify-content: center;
      text-align: center;
-     background-image: url("Images/TiempoFondo.svg");
+     background-image: url("../Images/TiempoFondo.svg");
      background-size: cover;
      height:6.15vh;
      padding-bottom:1.6vh;
@@ -269,15 +269,15 @@
      font-weight: 600;
 }
  .FondoRespuestas{
-     background-image: url("Images/FondoPuntaje01.svg");
+     background-image: url("../Images/FondoPuntaje01.svg");
      color: #013b58;
 }
  .FondoTiempoTotal{
-     background-image: url("Images/FondoPuntaje02.svg");
+     background-image: url("../Images/FondoPuntaje02.svg");
      color: #fff;
 }
  .FondoPuntajeTotal{
-     background-image: url("Images/FondoPuntaje03.svg");
+     background-image: url("../Images/FondoPuntaje03.svg");
      color: #fff;
 }
 
