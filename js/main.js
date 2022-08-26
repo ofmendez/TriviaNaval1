@@ -13,7 +13,7 @@
     const page = new PageState();
 
     function loadViewFile(viewFile) {
-        fetch("../HTML/"+viewFile+".html")
+        fetch("./HTML/"+viewFile+".html")
         .then((response) => response.text())
         .then((textView) =>  page.change(new view(textView)) );
     }
