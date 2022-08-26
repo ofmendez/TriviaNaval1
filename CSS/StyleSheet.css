@@ -1,0 +1,346 @@
+*{
+     margin: 0;
+     padding: 0;
+     list-style: none;
+     text-decoration: none;
+     border: none;
+     outline: none;
+}
+ @font-face {
+     font-family: BebasNeueBook;
+     src: url(../Fonts/BebasNeueBook.woff);
+}
+ @font-face {
+     font-family: BebasNeueBold;
+     src: url(../Fonts/BebasNeueBold.woff);
+}
+ @font-face {
+     font-family: Montserrat;
+     src: url(https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap);
+}
+ body{
+     background-color: #022a3a;
+}
+ img{
+     width:100%;
+}
+ h2{
+     font-family: BebasNeueBold;
+     font-size:6vh;
+     color:white;
+     text-shadow: 2px 2px 5px black;
+}
+ button{
+     background-color:transparent;
+}
+ .TextosSubtitulos{
+     font-family: BebasNeueBold;
+     font-size:3vh;
+     color:white;
+     text-shadow: 2px 2px 5px black;
+}
+ .TextoParrafo{
+     font-family: Montserrat;
+     font-size:1.8vh;
+     color:white;
+     text-shadow: 2px 2px 5px black;
+}
+ .Wrapper{
+     height:100%;
+     min-height: 100%;
+     width:100vw;
+     text-align: center;
+}
+
+ #background-video {
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+     position: fixed;
+     left: 0;
+     right: 0;
+     top: 2px;
+     bottom: 0;
+     z-index: -1;
+}
+
+ .Content{
+     margin:0 auto;
+     display:block;
+     position: relative;
+     top: 50%;
+     -webkit-transform: translateY(-50%);
+     -ms-transform: translateY(-50%);
+     transform: translateY(-50%);
+     width: calc(100vh / 2);
+     min-width:300px;
+     height: 90vh;
+     max-height:90vh;
+     min-height:540px;
+}
+
+@media only screen and (max-width: 768px) {
+  .Content {
+    height: 100vh;
+    max-height:100vh;
+    min-height:100vh;
+    width: 100vh;
+    max-width:100vh;
+    min-width:100vh;
+  }
+}
+
+ .ContenidoColumnas{
+     display: flex;
+     width: 100%;
+     align-items: center;
+     justify-content: center;
+}
+ .CuerpoContenido{
+     padding:0 10%;
+}
+ .ColumnaFlex{
+     flex: 1;
+     float: inherit;
+     padding:0 5%;
+}
+ .Columna20Porciento{
+     width: 20%;
+     flex: 0 0 20%;
+}
+ .Columna25Porciento{
+     width: 25%;
+     flex: 0 0 25%;
+}
+ .Columna30Porciento{
+     width: 30%;
+     flex: 0 0 30%;
+}
+ .Columna33Porciento{
+     width: 33.3%;
+     flex: 0 0 33.3%;
+}
+ .Columna35Porciento{
+     width: 35%;
+     flex: 0 0 35%;
+}
+ .Columna40Porciento{
+     width: 40%;
+     flex: 0 0 40%;
+}
+ .Columna60Porciento{
+     width: 60%;
+     flex: 0 0 60%;
+}
+ .Columna65Porciento{
+     width: 65%;
+     flex: 0 0 65%;
+}
+ .Columna80Porciento{
+     width: 80%;
+     flex: 0 0 80%;
+}
+ .BotonGradiente {
+     font-family: Montserrat;
+     font-weight: 800;
+     font-size: 3vh;
+     padding: 5px 15px;
+     text-align: center;
+     transition: 0.5s;
+     background-size: 200% auto;
+     background-image: linear-gradient(#FFAA2A 0%, #FF3800 100%);
+     border: 5px solid #FFC75C;
+     color: #FFF;
+     width: 80%;
+     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+     cursor: pointer;
+     display: inline-block;
+     border-radius: 100px;
+}
+/* De aqui en adelante inician las páginas */
+/* Pagina Index */
+ .TitulosIndex{
+     margin:20px 0;
+}
+/* Pagina Registro */
+ .FondoTrasparenciaBarco{
+     background-image: url("../Images/RegistroFondo.png");
+     background-size: cover;
+     margin-top:-8vh;
+}
+ .CurvaSeccion{
+     margin-top:-5vh;
+}
+ input{
+     border: 0.5vh solid white;
+     background-color:#ffffff52;
+     border-radius:50px;
+     padding:12px 25px 12px 25px;
+     width:100%;
+}
+ ::placeholder, input[type="text"], input[type="email"] {
+     color: white;
+     font-family: BebasNeueBold;
+     font-size: 3vh;
+}
+/* Pagina Preguntas */
+ .EstiloPregunta {
+     font-family: Montserrat;
+     font-size: 1.6vh;
+     padding: 1vh 2vh;
+     text-align: center;
+     background-size: 200% auto;
+     background-image: linear-gradient(#662481 0%, #755fa6 100%);
+     border: 0.5vh solid #dd5cff;
+     color: #FFF;
+     border-radius: 100px;
+}
+ .EstiloRespuesta{
+     border: 0.5vh solid #17fff2;
+     color: white;
+     padding: 1vh 2vh;
+     border-radius: 50px;
+     background-color: #013b58;
+     font-family: Montserrat;
+     font-size: 2vh;
+     position: relative;
+}
+.RespuestaCorrecta{
+  display:none;
+  font-family: Montserrat;
+  font-size: 2vh;
+  padding: 1vh 2vh;
+  text-align: center;
+  background-size: 200% auto;
+  background-image: linear-gradient(#FFAA2A 0%, #FF3800 100%);
+  border: 5px solid #FFC75C;
+  color: #FFF;
+  border-radius: 100px;
+}
+
+.RespuestaIncorrecta{
+  display:none;
+  font-family: Montserrat;
+  font-size: 2vh;
+  padding: 1vh 2vh;
+  text-align: center;
+  background-size: 200% auto;
+  background-image: linear-gradient(#eb5a67 0%, #bf0020 100%);
+  border: 0.5vh solid #ff5c61;
+  color: #FFF;
+  border-radius: 100px;
+}
+
+ .FondoTiempo{
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     text-align: center;
+     background-image: url("../Images/TiempoFondo.svg");
+     background-size: cover;
+     height:6.15vh;
+     padding-bottom:1.6vh;
+     padding-right: 0.4vh;
+     min-height:48px;
+     z-index: 9;
+     color: #013b58;
+     font-family: BebasNeueBold;
+     font-size:3vh;
+     font-weight: 600;
+}
+
+
+
+
+/* Pagina resultados */
+ .FondosResultados{
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     text-align: center;
+     background-size: cover;
+     height:10.8vh;
+     padding-bottom:1vh;
+     padding-right: 0.7vh;
+     min-height:48px;
+     z-index: 9;
+     font-family: BebasNeueBold;
+     font-size:3vh;
+     font-weight: 600;
+}
+ .FondoRespuestas{
+     background-image: url("../Images/FondoPuntaje01.svg");
+     color: #013b58;
+}
+ .FondoTiempoTotal{
+     background-image: url("../Images/FondoPuntaje02.svg");
+     color: #fff;
+}
+ .FondoPuntajeTotal{
+     background-image: url("../Images/FondoPuntaje03.svg");
+     color: #fff;
+}
+
+/* Página ranking */
+
+.ContenidosRanking{
+  font-family: BebasNeueBold;
+  font-size:2.4vh;
+  color:#ffb400;
+  width:100%;
+  background-color:#ffffff52;
+  border-radius: 50px;
+  border:0.5vh solid #ffb400;
+  padding:0.6vh;
+  margin-bottom:1vh;
+  text-align: left;
+}
+
+.ContenidosRanking ~ .ContenidosRanking{
+  color:white;
+  border:0.5vh solid white;
+
+}
+
+.PosicionJugadorRanking{
+  width:14%;
+}
+
+.NombreJugadorRanking{
+    width:66%;
+}
+
+.PuntajeJugadorRanking{
+  width:20%;
+
+}
+
+/* Animaciones */
+ @keyframes float {
+     0% {
+         transform: translatey(0px);
+    }
+     50% {
+         transform: translatey(-20px);
+    }
+     100% {
+         transform: translatey(0px);
+    }
+}
+ @keyframes float02 {
+     0% {
+         transform: translatey(0px);
+    }
+     50% {
+         transform: translatey(20px);
+    }
+     100% {
+         transform: translatey(0px);
+    }
+}
+ .IconosAmenazas{
+     animation: float 6s ease-in-out infinite;
+}
+ .IconosAmenazas02{
+     animation: float02 6s ease-in-out infinite;
+}
