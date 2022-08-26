@@ -1,0 +1,136 @@
+[
+    {
+        "Questions":[
+            {
+                "id": "0",
+                "statement": "¿Con que plataforma de SIEM podemos integrar nuestra aplicación?",
+                "Answers":[
+                    {
+                        "id":"0",
+                        "text":"Splunk",
+                        "isCorrect": false 
+                    },
+                    {
+                        "id":"1",
+                        "text":"Qradar",
+                        "isCorrect": false 
+                    },
+                    {
+                        "id":"2",
+                        "text":"SIEM",
+                        "isCorrect": false 
+                    },
+                    {
+                        "id":"3",
+                        "text":"Cualquiera del mercado",
+                        "isCorrect": true 
+                    }
+                ]
+            },
+            {
+                "id": "1",
+                "statement": "¿Como se llama nuestro módulo de amenazas avanzadas?",
+                "Answers":[
+                    {
+                        "id":"0",
+                        "text":"TRAP",
+                        "isCorrect": false 
+                    },
+                    {
+                        "id":"1",
+                        "text":"TAP",
+                        "isCorrect": false 
+                    },
+                    {
+                        "id":"2",
+                        "text":"Information Protection",
+                        "isCorrect": true 
+                    },
+                    {
+                        "id":"3",
+                        "text":"Ninguno de los anteriores",
+                        "isCorrect": false 
+                    }
+                ]
+            },
+            {
+                "id": "2",
+                "statement": "¿Que engine bloquea correo malicioso en la conexión?",
+                "Answers":[
+                    {
+                        "id":"0",
+                        "text":"Listas negras",
+                        "isCorrect": false 
+                    },
+                    {
+                        "id":"1",
+                        "text":"Reglas en email firewall",
+                        "isCorrect": false 
+                    },
+                    {
+                        "id":"2",
+                        "text":"Reputación (PDR)",
+                        "isCorrect": true 
+                    },
+                    {
+                        "id":"3",
+                        "text":"Impostor",
+                        "isCorrect": false 
+                    }
+                ]
+            },
+            {
+                "id": "3",
+                "statement": "¿Como se llama el módulo que revisa el cumplimiento de normativas?",
+                "Answers":[
+                    {
+                        "id":"0",
+                        "text":"Email Protection",
+                        "isCorrect": false 
+                    },
+                    {
+                        "id":"1",
+                        "text":"Email Encryption",
+                        "isCorrect": false 
+                    },
+                    {
+                        "id":"2",
+                        "text":"Information Protection",
+                        "isCorrect": true 
+                    },
+                    {
+                        "id":"3",
+                        "text":"Targeted Attack Protection",
+                        "isCorrect": false 
+                    }
+                ]
+            },
+            {
+                "id": "4",
+                "statement": "¿Con qué fabricantes se integra la solución presentada?",
+                "Answers":[
+                    {
+                        "id":"0",
+                        "text":"CyberArk",
+                        "isCorrect": false 
+                    },
+                    {
+                        "id":"1",
+                        "text":"Palo Alto",
+                        "isCorrect": false 
+                    },
+                    {
+                        "id":"2",
+                        "text":"SailPoint",
+                        "isCorrect": false 
+                    },
+                    {
+                        "id":"3",
+                        "text":"Todas las alternativas",
+                        "isCorrect": true 
+                    }
+                ]
+            }
+        ]   
+    }
+]

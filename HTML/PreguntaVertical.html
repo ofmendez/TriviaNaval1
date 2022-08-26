@@ -1,4 +1,4 @@
-<video id="background-video" autoplay loop muted poster="Images/Fondo.jpg" >
+<video id="background-video" autoplay loop muted poster="Images/Fondo.jpg">
    <source src="Images/FondoAgua.mp4" type="video/mp4">
 </video>
 <div class="ImagenLogoSuperior">
@@ -10,9 +10,9 @@
          <div class="ColumnaFlex Columna20Porciento">
             <div style="height:2vh;"></div>
             <div class="FondoTiempo">60</div>
-            <div style="height:1vh;"></div>
+            <div class="space1vh"></div>
             <img src="Images/IconoAntivirus.svg" />
-            <div style="height:1vh;"></div>
+            <div class="space1vh"></div>
             <img src="Images/IconoTurbox2.svg" />
             <div style="height:7vh;"></div>
          </div>
@@ -24,28 +24,30 @@
       <div style="margin:0 auto; width:80%;">
          <div class="EstiloPregunta" id="Pregunta">¿Pregunta? </div>
          <div style="height:2vh;"></div>
-         <div class="EstiloRespuesta" id="Respuesta1"> Respuesta 1 </div>
+         <div>
 
-         <div class="RespuestaCorrecta" id="RespuestaCorrecta1"> ¡Correcto! </div>
-         <div class="RespuestaIncorrecta" id="RespuestaIncorrecta1"> ¡Incorrecto! </div>
+            <div onClick="Answer('0')" class="EstiloRespuesta" id="Respuesta1"> Respuesta 1 </div>
+            <div hidden class="RespuestaCorrecta" id="RespuestaCorrecta1"> ¡Correcto! </div>
+            <div hidden class="RespuestaIncorrecta" id="RespuestaIncorrecta1"> ¡Incorrecto! </div>
 
-         <div style="height:1vh;"></div>
-         <div class="EstiloRespuesta" id="Respuesta2"> Respuesta 2 </div>
+            <div class="space1vh"></div>
 
-         <div class="RespuestaCorrecta" id="RespuestaCorrecta2"> ¡Correcto! </div>
-         <div class="RespuestaIncorrecta" id="RespuestaIncorrecta2"> ¡Incorrecto! </div>
+            <div onClick="Answer('1')" class="EstiloRespuesta" id="Respuesta2"> Respuesta 2 </div>
+            <div hidden class="RespuestaCorrecta" id="RespuestaCorrecta2"> ¡Correcto! </div>
+            <div hidden class="RespuestaIncorrecta" id="RespuestaIncorrecta2"> ¡Incorrecto! </div>
 
-         <div style="height:1vh;"></div>
-         <div class="EstiloRespuesta" id="Respuesta3"> Respuesta 3 </div>
+            <div class="space1vh"></div>
 
-         <div class="RespuestaCorrecta" id="RespuestaCorrecta3"> ¡Correcto! </div>
-         <div class="RespuestaIncorrecta" id="RespuestaIncorrecta3"> ¡Incorrecto! </div>
+            <div onClick="Answer('2')" class="EstiloRespuesta" id="Respuesta3"> Respuesta 3 </div>
+            <div hidden class="RespuestaCorrecta" id="RespuestaCorrecta3"> ¡Correcto! </div>
+            <div hidden class="RespuestaIncorrecta" id="RespuestaIncorrecta3"> ¡Incorrecto! </div>
 
-         <div style="height:1vh;"></div>
-         <div class="EstiloRespuesta" id="Respuesta4"> Respuesta 4 </div>
+            <div class="space1vh"></div>
 
-         <div class="RespuestaCorrecta" id="RespuestaCorrecta4"> ¡Correcto! </div>
-         <div class="RespuestaIncorrecta" id="RespuestaIncorrecta4"> ¡Incorrecto! </div>
+            <div onClick="Answer('3')" class="EstiloRespuesta" id="Respuesta4"> Respuesta 4 </div>
+            <div hidden class="RespuestaCorrecta" id="RespuestaCorrecta4"> ¡Correcto! </div>
+            <div hidden class="RespuestaIncorrecta" id="RespuestaIncorrecta4"> ¡Incorrecto! </div>
+         </div>
 
          <div style="height:8vh;"></div>
       </div>
