@@ -1,6 +1,7 @@
     
     const content = document.getElementById('Content');
     let Questions = {}    
+    // loadDataFile("json")
 
     // CONTROL ESTADO DE LAS VISTAS
     const view = function(textView) {
@@ -13,17 +14,21 @@
     const page = new PageState();
 
     function loadViewFile(viewFile) {
-        fetch("./HTML/"+viewFile+".html")
-        .then((response) => response.text())
-        .then((textView) =>  page.change(new view(textView)) );
+        return new Promise((resolve,reject)=>{
+            fetch("./HTML/"+viewFile+".html")
+            .then((response) => response.text())
+            .then((textView) =>  resolve(page.change(new view(textView)) ));
+        });
     }
 
-    function loadDataFile() {
-        fetch("./Data/data.txt")
+    function loadDataFile(ext) {
+        fetch("./Data/data."+ext)
         .then((response) => response.text())
         .then((textView) =>  {
-            console.log(atob(textView));
-            LoadQuestions( JSON.parse(atob(textView)))
+            if(ext === "json")
+                console.log(b64EncodeUnicode(textView));
+            else
+                LoadQuestions( JSON.parse(b64DecodeUnicode(textView)))
         } );
     }
 
@@ -44,10 +49,12 @@
     } 
     function GoToLobby() {
         loadViewFile("EligeAmenaza")
-        loadDataFile()
+        loadDataFile("txt")
     }
-    function GoQuestion() {
-        loadViewFile("PreguntaVertical")
+    function GoQuestion(qId) {
+        loadViewFile("PreguntaVertical").then((res)=>{
+            SetQuestion(Questions[qId])
+        });
     }
     function GoRanking() {
         loadViewFile("Ranking")
@@ -60,5 +67,43 @@
     /////////////////////////
     function LoadQuestions(data){
         Questions = data[0].Questions;
-        console.log(Questions);
+        console.log(Questions[0]);
+    }
+
+    function SetQuestion(question) {
+        //for
+        some('div',['EstiloRespuesta'],question.Answers[0].text,document.getElementById('answersList'))
+    }
+
+function some(tagToAdd, listClasses, content, targetParent ) {
+    // Create element
+    const el = document.createElement(tagToAdd);
+    
+    // Add classes to element
+    el.classList.add(...listClasses);
+    
+    
+    // Set the innerHTML of the element
+    el.innerHTML = content;
+    // Or add text content to element
+    // el.textContent = content;
+    console.log(targetParent);
+    // add element to DOM
+    targetParent.appendChild(el);
+}
+
+
+
+
+    function b64EncodeUnicode(str) {
+        return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g,
+            function toSolidBytes(match, p1) {
+                return String.fromCharCode('0x' + p1);
+        }));
+    }
+
+    function b64DecodeUnicode(str) {
+        return decodeURIComponent(atob(str).split('').map(function(c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
     }
