@@ -378,3 +378,7 @@ input[type="email"] {
   display: none!important;
   -webkit-appearance: none;
 }
+*::-webkit-media-controls-enclosure {
+  display: none!important;
+  -webkit-appearance: none;
+}
