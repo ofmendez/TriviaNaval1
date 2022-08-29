@@ -16,7 +16,7 @@
 }
 @font-face {
 	font-family: Montserrat;
-	src: url(https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap);
+	src: url(../Fonts/Montserrat.woff);
 }
 body {
 	background-color: #022a3a;
@@ -82,14 +82,13 @@ button {
 @media only screen and (max-width: 768px) {
 	.Content {
 		height: 100vh;
-		max-height: 100vh;
-		min-height: 100vh;
-		width: 100vh;
-		max-width: 100vh;
-		min-width: 100vh;
+		max-height:100vh;
+		min-height:100vh;
+		width: 100vw;
+		max-width:100vw;
+		min-width:100vw;
 	}
 }
-
 .ContenidoColumnas {
 	display: flex;
 	width: 100%;
