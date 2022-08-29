@@ -226,6 +226,7 @@
             AccumPoints(timeleft+1,pointsBySuccess)
     }
 
+    
     function ConmuteClassAndInner(element, c1, c2, in1){
         element.classList.add(c1)
         element.classList.remove(c2)
