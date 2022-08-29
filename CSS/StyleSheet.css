@@ -361,6 +361,7 @@ input[type="email"] {
 *::-webkit-media-controls-panel {
   display: none!important;
   -webkit-appearance: none;
+  opacity: 0;
 }
 
 /* Old shadow dom for play button */
@@ -368,6 +369,7 @@ input[type="email"] {
 *::-webkit-media-controls-play-button {
   display: none!important;
   -webkit-appearance: none;
+  opacity: 0;
 }
 
 /* New shadow dom for play button */
@@ -377,8 +379,15 @@ input[type="email"] {
 *::-webkit-media-controls-start-playback-button {
   display: none!important;
   -webkit-appearance: none;
+  opacity: 0;
 }
 *::-webkit-media-controls-enclosure {
   display: none!important;
   -webkit-appearance: none;
+  opacity: 0;
+}
+*::-webkit-media-controls {
+	display: none!important;
+	-webkit-appearance: none;
+    opacity: 0;
 }
