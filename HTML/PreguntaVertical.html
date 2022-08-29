@@ -11,9 +11,12 @@
             <div style="height:2vh;"></div>
             <div class="FondoTiempo">60</div>
             <div class="space1vh"></div>
-            <img src="Images/IconoAntivirus.svg" />
-            <div class="space1vh"></div>
-            <img src="Images/IconoTurbox2.svg" />
+            <div hidden id="powerUp5050" >
+               <img class="interactable" src="Images/IconoAntivirus.svg" />
+               <div class="space1vh"></div>
+            </div>
+            <img id="turboIcon2" hidden src="Images/IconoTurbox2.svg" />
+            <img id="turboIcon3" hidden src="Images/IconoTurbox3.svg" />
             <div style="height:7vh;"></div>
          </div>
          <div class="ColumnaFlex Columna80Porciento">
@@ -22,33 +25,9 @@
    </div>
    <div style="position:absolute; width:100%; bottom:0; left:0;">
       <div style="margin:0 auto; width:80%;">
-         <div class="EstiloPregunta" id="Pregunta">¿Pregunta? </div>
-         <div style="height:2vh;"></div>
-         <div id="answersList">
-
-            <!-- <div onClick="Answer('0')" class="EstiloRespuesta" id="Respuesta1"> Respuesta 1 </div>
-            <div hidden class="RespuestaCorrecta" id="RespuestaCorrecta1"> ¡Correcto! </div>
-            <div hidden class="RespuestaIncorrecta" id="RespuestaIncorrecta1"> ¡Incorrecto! </div>
-
-            <div class="space1vh"></div>
-
-            <div onClick="Answer('1')" class="EstiloRespuesta" id="Respuesta2"> Respuesta 2 </div>
-            <div hidden class="RespuestaCorrecta" id="RespuestaCorrecta2"> ¡Correcto! </div>
-            <div hidden class="RespuestaIncorrecta" id="RespuestaIncorrecta2"> ¡Incorrecto! </div>
-
-            <div class="space1vh"></div>
-
-            <div onClick="Answer('2')" class="EstiloRespuesta" id="Respuesta3"> Respuesta 3 </div>
-            <div hidden class="RespuestaCorrecta" id="RespuestaCorrecta3"> ¡Correcto! </div>
-            <div hidden class="RespuestaIncorrecta" id="RespuestaIncorrecta3"> ¡Incorrecto! </div>
-
-            <div class="space1vh"></div>
-
-            <div onClick="Answer('3')" class="EstiloRespuesta" id="Respuesta4"> Respuesta 4 </div>
-            <div hidden class="RespuestaCorrecta" id="RespuestaCorrecta4"> ¡Correcto! </div>
-            <div hidden class="RespuestaIncorrecta" id="RespuestaIncorrecta4"> ¡Incorrecto! </div> -->
-         </div>
-
+         <div class="EstiloPregunta" id="Pregunta"> </div>
+            <div id="answersList">
+            </div>
          <div style="height:8vh;"></div>
       </div>
    </div>

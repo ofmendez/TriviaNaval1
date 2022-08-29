@@ -241,7 +241,7 @@ input[type="email"] {
 	background-size: cover;
 	height: 6.15vh;
 	padding-bottom: 1.6vh;
-	padding-right: 0.4vh;
+	/* padding-right: 0.4vh; */
 	min-height: 48px;
 	z-index: 9;
 	color: #013b58;
@@ -336,17 +336,25 @@ input[type="email"] {
 }
 .IconosAmenazas {
 	animation: float 6s ease-in-out infinite;
-	cursor: pointer;
 }
 .IconosAmenazas02 {
 	animation: float02 6s ease-in-out infinite;
-	cursor: pointer;
 }
 
-.hidden {
-	display: none;
-}
+
+
+[transparent] { opacity: 0; } /*  ESTO FUNCIONA??*/
 
 .space1vh {
     height:1vh;
+}
+.space2vh {
+    height:2vh;
+}
+
+.avoidEvents{
+	pointer-events: none;
+}
+.interactable{
+	cursor: pointer;
 }
