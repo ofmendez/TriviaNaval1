@@ -357,3 +357,6 @@ input[type="email"] {
 .interactable{
 	cursor: pointer;
 }
+video::-webkit-media-controls {
+    display:none !important;
+}
