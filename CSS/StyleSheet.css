@@ -360,16 +360,16 @@ input[type="email"] {
 
 *::-webkit-media-controls-panel {
   display: none!important;
-  -webkit-appearance: none;
-  opacity: 0;
+  -webkit-appearance: none!important;
+  opacity: 0!important;
 }
 
 /* Old shadow dom for play button */
 
 *::-webkit-media-controls-play-button {
   display: none!important;
-  -webkit-appearance: none;
-  opacity: 0;
+  -webkit-appearance: none!important;
+  opacity: 0!important;
 }
 
 /* New shadow dom for play button */
@@ -378,16 +378,16 @@ input[type="email"] {
 
 *::-webkit-media-controls-start-playback-button {
   display: none!important;
-  -webkit-appearance: none;
-  opacity: 0;
+  -webkit-appearance: none!important;
+  opacity: 0!important;
 }
 *::-webkit-media-controls-enclosure {
   display: none!important;
-  -webkit-appearance: none;
-  opacity: 0;
+  -webkit-appearance: none!important;
+  opacity: 0!important;
 }
 *::-webkit-media-controls {
 	display: none!important;
-	-webkit-appearance: none;
-    opacity: 0;
+	-webkit-appearance: none!important;
+    opacity: 0!important;
 }
