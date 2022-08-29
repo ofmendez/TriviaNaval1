@@ -79,7 +79,7 @@ button {
 	min-height: 540px;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 860px) {
 	.Content {
 		height: 100vh;
 		max-height:100vh;
@@ -89,7 +89,6 @@ button {
 		min-width:100vw;
 	}
 }
-
 .ContenidoColumnas {
 	display: flex;
 	width: 100%;
