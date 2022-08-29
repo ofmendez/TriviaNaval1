@@ -1,4 +1,5 @@
-    
+    // import {writeUserData } from "./database.js";
+    // import {b64EncodeUnicode,b64DecodeUnicode } from "./codification.js";
     const content = document.getElementById('Content');
     let Questions = {}    
     let countdownTimer = {}
@@ -12,8 +13,25 @@
     let multiplier = 1;
     let timeByAns = 60
     let timeleft = timeByAns-1
-    // loadDataFile("json")
 
+    let b64EncodeUnicode ={}
+    let b64DecodeUnicode ={}
+    // loadDataFile("json")
+    import('./codification.js').then((Module) => {
+        b64EncodeUnicode = Module.b64EncodeUnicode
+        b64DecodeUnicode = Module.b64DecodeUnicode
+    })
+    loadCredentials()
+    function loadCredentials() {
+        // fetch("./credentials/firebaseConfig.json")
+        fetch("./Data/dataf.txt")
+        .then((response) => response.text())
+        .then((textView) =>  {
+                // console.log(b64EncodeUnicode(textView));
+                console.log( JSON.parse(b64DecodeUnicode(textView))[0].firebaseConfig );
+        } );
+    }
+    // writeUserData('userid_mail_com', 'fabiname', 'elEmail@mailSI.com', 'this is a url')
     // CONTROL ESTADO DE LAS VISTAS
     const view = function(textView) {
         content.innerHTML = textView;
@@ -49,6 +67,7 @@
     // GoToLobby()
     // GoRanking()
 
+    // export default 
     function GoToRegister() {
         loadViewFile("Registro")
     }
@@ -263,19 +282,3 @@ function InsertElement(tagToAdd, listClasses, content, targetParent, nameId ) {
     targetParent.appendChild(el);
     return el;
 }
-
-
-
-
-    function b64EncodeUnicode(str) {
-        return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g,
-            function toSolidBytes(match, p1) {
-                return String.fromCharCode('0x' + p1);
-        }));
-    }
-
-    function b64DecodeUnicode(str) {
-        return decodeURIComponent(atob(str).split('').map(function(c) {
-            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-        }).join(''));
-    }
