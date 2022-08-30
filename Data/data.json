@@ -3,7 +3,7 @@
         "Questions":[
             {
                 "id": "0",
-                "statement": "¿Con que plataforma de SIEM podemos integrar nuestra aplicación?",
+                "statement": "¿Con qué plataforma de SIEM podemos integrar nuestra aplicación?",
                 "Answers":[
                     {
                         "id":"0",
@@ -29,7 +29,7 @@
             },
             {
                 "id": "1",
-                "statement": "¿Como se llama nuestro módulo de amenazas avanzadas?",
+                "statement": "¿Cómo se llama nuestro módulo de amenazas avanzadas?",
                 "Answers":[
                     {
                         "id":"0",
@@ -39,12 +39,12 @@
                     {
                         "id":"1",
                         "text":"TAP",
-                        "isCorrect": false 
+                        "isCorrect": true 
                     },
                     {
                         "id":"2",
                         "text":"Information Protection",
-                        "isCorrect": true 
+                        "isCorrect": false 
                     },
                     {
                         "id":"3",
@@ -55,7 +55,7 @@
             },
             {
                 "id": "2",
-                "statement": "¿Que engine bloquea correo malicioso en la conexión?",
+                "statement": "¿Qué engine bloquea correo malicioso en la conexión?",
                 "Answers":[
                     {
                         "id":"0",
@@ -81,7 +81,7 @@
             },
             {
                 "id": "3",
-                "statement": "¿Como se llama el módulo que revisa el cumplimiento de normativas?",
+                "statement": "¿Cómo se llama el módulo que revisa el cumplimiento de normativas?",
                 "Answers":[
                     {
                         "id":"0",
