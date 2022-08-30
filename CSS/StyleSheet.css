@@ -348,7 +348,7 @@ input[type="email"] {
 
 
 
-[transparent] { opacity: 0; } /*  ESTO FUNCIONA??*/
+[transparent] { visibility: hidden; } /*  ESTO FUNCIONA??*/
 
 .space1vh {
     height:1vh;

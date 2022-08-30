@@ -65,7 +65,7 @@
     loadViewFile("Wellcome")
     // GoToLobby()
     // GoToLobby()
-    // GoRanking()
+    // GoQuestion(1)
 
     // export default 
     function GoToRegister() {
@@ -254,7 +254,7 @@
     /////////////////////////
     function LoadQuestions(data){
         Questions = data[0].Questions;
-        console.log(Questions);
+        // console.log(Questions);
     }
 
     function SetQuestionAndAnswers(question) {
