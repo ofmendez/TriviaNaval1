@@ -71,10 +71,10 @@ option{
 	margin: 0 auto;
 	display: block;
 	position: relative;
-	top: 0%;
-	-webkit-transform: translateY(0%);
-	-ms-transform: translateY(0%);
-	transform: translateY(0%);
+	top: 50vh;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
 	width: calc(100vh / 2);
 	min-width: 300px;
 	height: 90vh;
@@ -233,8 +233,6 @@ select {
 	justify-content: center;
 	text-align: center;
 	background-image: url("../Images/TiempoFondo.svg");
-	background-size: cover;
-	height: 6.15vh;
 	padding-bottom: 1.6vh;
 	/* padding-right: 0.4vh; */
 	min-height: 48px;
@@ -243,6 +241,11 @@ select {
 	font-family: BebasNeueBold;
 	font-size: 3vh;
 	font-weight: 600;
+
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: contain;
+	height: 12vh;
 }
 
 /* Pagina resultados */
@@ -251,8 +254,6 @@ select {
 	align-items: center;
 	justify-content: center;
 	text-align: center;
-	background-size: cover;
-	height: 10.8vh;
 	padding-bottom: 1vh;
 	padding-right: 0.7vh;
 	min-height: 48px;
@@ -260,6 +261,11 @@ select {
 	font-family: BebasNeueBold;
 	font-size: 3vh;
 	font-weight: 600;
+
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: contain;
+	height: 12vh;
 }
 .FondoRespuestas {
 	background-image: url("../Images/FondoPuntaje01.svg");
@@ -406,4 +412,24 @@ select {
 		top: 100%;
 		left: 0;
 	}
+}
+
+div#tablasRR {
+max-height: 42vh;
+overflow-y: scroll;
+padding: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ffffff44;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+    border: 2px solid #ffffff;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
 }
