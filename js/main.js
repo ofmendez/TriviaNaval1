@@ -2,7 +2,7 @@ import {b64DecodeUnicode } from "./codification.js";
 import * as views from "./views.js";
 import {loadDataFile} from './files.js'
 import {InsertElement, RandomInt, ConmuteClassAndInner, AnimateWithTransparent, emailToId} from './utils.js'
-import {createUserData ,getUserData} from "./database.js";
+import {createUserData ,getUserData, updateScore} from "./database.js";
 
 
     let Questions = {}    
@@ -17,25 +17,31 @@ import {createUserData ,getUserData} from "./database.js";
     let multiplier = 1;
     let timeByAns = 60
     let timeleft = timeByAns-1
+    let userID = ''
     window.views = views
     
     views.GoTo("Wellcome")
     
 
     window.TryLogin = (form)=>{
-        createUserData(
-            emailToId(form.elements['idCorreo'].value),
-            form.elements['idCorreo'].value,
-            form.elements['idNombreCompleto'].value,
-            form.elements['idEmpresa'].value,
-            form.elements['idAssesment'].value
-        ).then((res)=>{
-            views.GoTo("Instrucciones01")
+        //TODO: preguntar si el correo existe
+        getUserData().then((res)=>{
+            let exist = false
+            for (const u in res) 
+                if (res.hasOwnProperty(u)) 
+                    exist |= u===emailToId(form.elements['idCorreo'].value)
+            if(exist)
+                GoRanking()
+            else
+                Login(form)
             return false;
-        }).catch(()=> {
-            alert("Ha ocurrido un error, intente nuevamente.")
+
+        }).catch((res)=> {
+            console.log("Error login: "+res)
+            alert("Ranking, Ha ocurrido un error, intente nuevamente.")
             return false;
         })
+
         return false;
     }
 
@@ -44,6 +50,21 @@ import {createUserData ,getUserData} from "./database.js";
         loadDataFile("txt").then((res)=>{
             Questions = res[0].Questions;
         });
+    }
+
+    const Login = (form)=>{
+        createUserData(
+            emailToId(form.elements['idCorreo'].value),
+            form.elements['idCorreo'].value,
+            form.elements['idNombreCompleto'].value,
+            form.elements['idEmpresa'].value,
+            form.elements['idAssesment'].value
+        ).then((res)=>{
+            userID = emailToId(form.elements['idCorreo'].value);
+            views.GoTo("Instrucciones01")
+        }).catch(()=> {
+            alert("Ha ocurrido un error, intente nuevamente.")
+        })
     }
 
     const SetLobby = ()=>{
@@ -76,6 +97,9 @@ import {createUserData ,getUserData} from "./database.js";
     }
 
     // GoRanking()
+
+
+
 //////////////////////////////////////////////
     const FillRanking = (usersObj)=>{
         let users = []
@@ -96,14 +120,22 @@ import {createUserData ,getUserData} from "./database.js";
     }
 
     const GoToResults = ()=>{
-        views.GoTo("Resultados").then((res)=>{
-            document.getElementById('correctAnswers').innerHTML =(Object.keys(answered).length-totalErrors)+'/'+Questions.length
-            document.getElementById('totalTime').innerHTML =new Date(totalTime*1000).toISOString().substring(14, 19);
-            document.getElementById('score').innerHTML = totalPoints;
-        })
+        document.body.classList.add('avoidEvents');
+
+        updateScore( userID, totalPoints).then((res)=>{
+            views.GoTo("Resultados").then((res)=>{
+                document.getElementById('correctAnswers').innerHTML =(Object.keys(answered).length-totalErrors)+'/'+Questions.length
+                document.getElementById('totalTime').innerHTML =new Date(totalTime*1000).toISOString().substring(14, 19);
+                document.getElementById('score').innerHTML = totalPoints;
+                document.body.classList.remove('avoidEvents');
+            });
+        }).catch(() =>{
+            alert("Ocurrió un error, intenta nuevamente.");
+            document.body.classList.remove('avoidEvents');
+            GoToResults();
+        });
     }
     
-
     
     const GoQuestion = (qId)=>{
         views.GoTo("PreguntaVertical").then((res)=>{

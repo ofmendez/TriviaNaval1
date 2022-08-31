@@ -1,5 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-app.js'
-import { getDatabase, set , ref,onValue } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-database.js'
+import { getDatabase, set, ref, onValue, child, push, update } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-database.js'
 import {loadCredentials} from './files.js'
 
 let firebaseConfig = {}
@@ -11,7 +11,6 @@ let existDatabase = false;
 const getDB = function (){
     return new Promise((resolve,reject)=>{
         if (existDatabase){
-            console.log("db", database);
             resolve(database)
         } else{
             existDatabase =true;
@@ -19,11 +18,9 @@ const getDB = function (){
                 firebaseConfig =res;
                 app = initializeApp(firebaseConfig);
                 database = getDatabase(app);
-                console.log("creating", database);
                 resolve(database);
             });
         }
-        // writeUserData('fabian_email', 'fabiname', 'elEmail@mailSI.com', 'this is a url')
     });
 };
 
@@ -35,6 +32,21 @@ export function getUserData() {
                 resolve(snapshot.val())
             }, {
                 onlyOnce: false
+            });
+        }).catch((e)=> reject("error getDB: "+e))
+    });
+}
+
+
+
+export function updateScore(userId, newScore) {
+    return new Promise((resolve,reject)=>{
+        getDB().then((db)=>{
+            const newPostKey = push(child(ref(db), userId)).key;
+            const updates = {};
+            updates['/users/' + userId+'/score'] = newScore;
+            update(ref(db), updates).then(()=>{
+                resolve("Updated!! ")
             });
         }).catch((e)=> reject("error getDB: "+e))
     });
