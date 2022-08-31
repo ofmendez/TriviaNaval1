@@ -1,6 +1,10 @@
-    // import {writeUserData } from "./database.js";
-    // import {b64EncodeUnicode,b64DecodeUnicode } from "./codification.js";
-    const content = document.getElementById('Content');
+import {b64DecodeUnicode } from "./codification.js";
+import * as views from "./views.js";
+import {loadDataFile} from './files.js'
+import {InsertElement, RandomInt, ConmuteClassAndInner, AnimateWithTransparent, emailToId} from './utils.js'
+import {createUserData ,getUserData} from "./database.js";
+
+
     let Questions = {}    
     let countdownTimer = {}
     let totalTime = 0 
@@ -13,109 +17,39 @@
     let multiplier = 1;
     let timeByAns = 60
     let timeleft = timeByAns-1
-
-    let b64EncodeUnicode ={}
-    let b64DecodeUnicode ={}
-    // loadDataFile("json")
-    import('./codification.js').then((Module) => {
-        b64EncodeUnicode = Module.b64EncodeUnicode
-        b64DecodeUnicode = Module.b64DecodeUnicode
-    })
-    loadCredentials()
-    function loadCredentials() {
-        // fetch("./credentials/firebaseConfig.json")
-        fetch("./Data/dataf.txt")
-        .then((response) => response.text())
-        .then((textView) =>  {
-                // console.log(b64EncodeUnicode(textView));
-                console.log( JSON.parse(b64DecodeUnicode(textView))[0].firebaseConfig );
-        } );
-    }
-    // writeUserData('userid_mail_com', 'fabiname', 'elEmail@mailSI.com', 'this is a url')
-    // CONTROL ESTADO DE LAS VISTAS
-    const view = function(textView) {
-        content.innerHTML = textView;
-    }
-    const PageState = function() {
-        let currentState = new view("");
-        this.change = state => currentState = state;
-    }
-    const page = new PageState();
-
-    function loadViewFile(viewFile) {
-        return new Promise((resolve,reject)=>{
-            fetch("./HTML/"+viewFile+".html")
-            .then((response) => response.text())
-            .then((textView) =>  resolve(page.change(new view(textView)) ));
-        });
-    }
-
-    function loadDataFile(ext) {
-        fetch("./Data/data."+ext)
-        .then((response) => response.text())
-        .then((textView) =>  {
-            if(ext === "json")
-                console.log(b64EncodeUnicode(textView));
-            else
-                LoadQuestions( JSON.parse(b64DecodeUnicode(textView)))
-        } );
-    }
-
-    //NAVEGACION
-    loadViewFile("Wellcome")
-    // GoToLobby()
-    // GoToLobby()
-    // GoQuestion(1)
-
-    // export default 
-    function GoToRegister() {
-        loadViewFile("Registro")
-    }
-
-    function TryLogin() {
-        loadViewFile("Instrucciones01")
-    }
-
-    function GoToLastInstructions() {
-        loadViewFile("Instrucciones02")
-    } 
-
-    function GoToLobby() {
-        SetLobby()
-        loadDataFile("txt")
-    }
-
-    function GoRanking() {
-        loadViewFile("Ranking").then((res)=>{
-            let container = document.getElementById('tablas._.');
-            let tables0 = InsertElement('table',['ContenidosRanking'],'',container);
-            let tr0 = InsertElement('tr',[],'',tables0);
-            InsertElement('th',['PosicionJugadorRanking'],'#1',tr0)
-            InsertElement('th',['NombreJugadorRanking'],'FABIAN MENDEZ',tr0)
-            InsertElement('th',['PuntajeJugadorRanking'],'2342',tr0)
-            for (let i = 2; i < 5; i++) {
-                let tables = InsertElement('table',['ContenidosRanking'],'',container);
-                let tr = InsertElement('tr',[],'',tables);
-                InsertElement('th',['PosicionJugadorRanking'],'#'+i,tr);
-                InsertElement('th',['NombreJugadorRanking'],'FABIAN '+i+' MENDEZ',tr);
-                InsertElement('th',['PuntajeJugadorRanking'],23-i,tr);
-                
-            }
-        });
-    }
-
-    function GoToResults() {
-        loadViewFile("Resultados").then((res)=>{
-            document.getElementById('correctAnswers').innerHTML =(Object.keys(answered).length-totalErrors)+'/'+Questions.length
-            document.getElementById('totalTime').innerHTML =new Date(totalTime*1000).toISOString().substring(14, 19);
-            document.getElementById('score').innerHTML = totalPoints;
-        })
-    }
+    window.views = views
     
-    function SetLobby() {
-        loadViewFile("EligeAmenaza").then((res)=>{
+    views.GoTo("Wellcome")
+    
+
+    window.TryLogin = (form)=>{
+        createUserData(
+            emailToId(form.elements['idCorreo'].value),
+            form.elements['idCorreo'].value,
+            form.elements['idNombreCompleto'].value,
+            form.elements['idEmpresa'].value,
+            form.elements['idAssesment'].value
+        ).then((res)=>{
+            views.GoTo("Instrucciones01")
+            return false;
+        }).catch(()=> {
+            alert("Ha ocurrido un error, intente nuevamente.")
+            return false;
+        })
+        return false;
+    }
+
+    window.GoToLobby = ()=>{
+        SetLobby();
+        loadDataFile("txt").then((res)=>{
+            Questions = res[0].Questions;
+        });
+    }
+
+    const SetLobby = ()=>{
+        views.GoTo("EligeAmenaza").then((res)=>{
             let questionBtns = document.getElementsByClassName('questionBtn')
-            ix =0
+            let ix =0
             for (let b of questionBtns) {
                 b.id = ix++; 
                 if (b.id in answered){
@@ -127,10 +61,52 @@
             }
             
         });
-
     }
-    function GoQuestion(qId) {
-        loadViewFile("PreguntaVertical").then((res)=>{
+
+    window.GoRanking = ()=>{
+        views.GoTo("Ranking").then((res)=>{
+            getUserData().then((res)=>{
+                FillRanking(res);
+                document.getElementById('loadingMessage').hidden =true;
+            }).catch((res)=> {
+                console.log("Error ranking: "+res)
+                alert("Ranking, Ha ocurrido un error, intente nuevamente.")
+            })
+        });
+    }
+
+    // GoRanking()
+//////////////////////////////////////////////
+    const FillRanking = (usersObj)=>{
+        let users = []
+        for (const u in usersObj) 
+            if (usersObj.hasOwnProperty(u)) 
+                users.push(usersObj[u]);
+        users.sort((a, b) => { return b.score - a.score; });
+        
+        let container = document.getElementById('tablasRR');
+        for (let i = 0; i < users.length; i++) {
+            let tables = InsertElement('table',['ContenidosRanking'],'',container);
+            let tr = InsertElement('tr',[],'',tables);
+            InsertElement('th',['PosicionJugadorRanking'],'#'+(i+1),tr);
+            InsertElement('th',['NombreJugadorRanking'],users[i].username,tr);
+            InsertElement('th',['PuntajeJugadorRanking'],users[i].score,tr);
+        }
+        
+    }
+
+    const GoToResults = ()=>{
+        views.GoTo("Resultados").then((res)=>{
+            document.getElementById('correctAnswers').innerHTML =(Object.keys(answered).length-totalErrors)+'/'+Questions.length
+            document.getElementById('totalTime').innerHTML =new Date(totalTime*1000).toISOString().substring(14, 19);
+            document.getElementById('score').innerHTML = totalPoints;
+        })
+    }
+    
+
+    
+    const GoQuestion = (qId)=>{
+        views.GoTo("PreguntaVertical").then((res)=>{
             SetQuestionAndAnswers(Questions[qId]);
             SetPowerUp5050(Questions[qId])
             RunTimer(Questions[qId])
@@ -138,17 +114,19 @@
         });
     }
 
-    function SetPowerUp5050(q) {
+
+//////////////////////////////////////////////////////////////////////
+
+    const SetPowerUp5050 = (q)=>{
         if(aviable5050)
             document.getElementById('powerUp5050').hidden =  false;
-            document.getElementById('powerUp5050').addEventListener('click', () =>{
-            document.body.classList.add('avoidEvents');
+        document.getElementById('powerUp5050').addEventListener('click', () =>{
             document.getElementById('powerUp5050').hidden = true;
             Use5050(q)
         });
     }
     
-    function Use5050(q) {
+    const Use5050 = (q)=>{
         aviable5050 = false;
         let idWrong1 = -1
         let idWrong2 = -1
@@ -165,62 +143,36 @@
                 continue
             idWrong2 = n2
         }
-        Animate5050( document.getElementById('answer'+idWrong1), document.getElementById('answer'+idWrong2));
+        AnimateWithTransparent( document.getElementById('answer'+idWrong1), document.getElementById('answer'+idWrong2),200);
     }
     
-    function Animate5050(el1, el2) {
-        el1.setAttribute('transparent',true);el2.setAttribute('transparent',true);
-        setTimeout(() => { el1.removeAttribute('transparent'); el2.removeAttribute('transparent');}, 200);
-        setTimeout(() => { el1.setAttribute('transparent',true); el2.setAttribute('transparent',true);}, 400);
-        setTimeout(() => { el1.removeAttribute('transparent'); el2.removeAttribute('transparent');}, 600);
-        setTimeout(() => { el1.setAttribute('transparent',true); el2.setAttribute('transparent',true); document.body.classList.remove('avoidEvents');}, 800);
-    }
-
-    function RandomInt(max) {
-        return Math.floor(Math.random() * max);
-    }
-
-
-    function RunTimer(q) {
-        timeleft = timeByAns -1;
-        countdownTimer = setInterval(() => {
-            document.getElementsByClassName("FondoTiempo")[0].textContent =timeleft
-            timeleft--;
-            if (timeleft < 0) {
-                clearInterval(countdownTimer);
-                AnimateAnswer(document.getElementById('Pregunta'),'RespuestaIncorrecta','¡Incorrecto!', q.statement)
-                AccumTime(timeByAns)
-                // resolve(true);
-            }
-        }, 1000);
-    }
-
 
     
-    function AccumTime(time) {
+    const AccumTime = (time)=>{
         totalTime += time;
     }
-    function AccumPoints(pointsT, pointsS) {
+    const AccumPoints = (pointsT, pointsS)=>{
         multiplier = streak >2 ? (streak>4? 3:2):1;
         totalPoints += (pointsT+pointsS*multiplier)
         console.log(totalPoints);
     }
     
-    function SetPowerUpMultiplier(){
+    const SetPowerUpMultiplier = ()=>{
         multiplier = streak >1 ? (streak>3? ShowTurbo(false, true):ShowTurbo( true, false)):ShowTurbo(false, false);
     }
 
-    function ShowTurbo(showX2, showX3) {
+    const ShowTurbo = (showX2, showX3)=>{
         document.getElementById('turboIcon2').hidden = !showX2;
         document.getElementById('turboIcon3').hidden = !showX3
     }
 
-    function AnimateAnswer(element, classTarget, innerTarget, ansText) {
+    const AnimateAnswer = (element, classTarget, innerTarget, ansText, interval)=>{
+        document.body.classList.add('avoidEvents');
         ConmuteClassAndInner(element,classTarget,'EstiloRespuesta',innerTarget)
-        setTimeout(() => {ConmuteClassAndInner(element,'EstiloRespuesta',classTarget,ansText)}, 300);
-        setTimeout(() => {ConmuteClassAndInner(element,classTarget,'EstiloRespuesta',innerTarget)}, 600);
-        setTimeout(() => {ConmuteClassAndInner(element,'EstiloRespuesta',classTarget,ansText)}, 900);
-        setTimeout(() => {ConmuteClassAndInner(element,classTarget,'EstiloRespuesta',innerTarget)}, 1200);
+        setTimeout(() => {ConmuteClassAndInner(element,'EstiloRespuesta',classTarget,ansText)}, interval);
+        setTimeout(() => {ConmuteClassAndInner(element,classTarget,'EstiloRespuesta',innerTarget)}, interval*2);
+        setTimeout(() => {ConmuteClassAndInner(element,'EstiloRespuesta',classTarget,ansText)}, interval*3);
+        setTimeout(() => {ConmuteClassAndInner(element,classTarget,'EstiloRespuesta',innerTarget)}, interval*4);
         setTimeout(() => {
             document.body.classList.remove('avoidEvents');
             clearInterval(countdownTimer);
@@ -228,36 +180,42 @@
                 GoToResults();
             else
                 SetLobby()
-        }, 2000);
+        }, interval*5);
     }
 
-    function Answer(ans, question){
-        answered[question.id] = ans.isCorrect
-        document.body.classList.add('avoidEvents');
+
+    const RunTimer = (question)=>{
+        timeleft = timeByAns -1;
+        countdownTimer = setInterval(() => {
+            document.getElementsByClassName("FondoTiempo")[0].textContent =timeleft
+            timeleft--;
+            if (timeleft < 0) {
+                clearInterval(countdownTimer);
+                answered[question.id] = false;
+                totalErrors ++;
+                streak = 0;
+                AccumTime(timeByAns)
+                AnimateAnswer(document.getElementById('Pregunta'),'RespuestaIncorrecta','¡Incorrecto!', question.statement, 300);
+            }
+        }, 1000);
+    }
+
+    const Answer = (ans, question)=>{
+        answered[question.id] = ans.isCorrect;
+        totalErrors += ans.isCorrect? 0 : 1;
+        streak = ans.isCorrect? streak + 1 : 0;
+        AccumTime(timeByAns-timeleft-1);
+        
         const element = document.getElementById('answer'+ans.id)
         let classTarget = ans.isCorrect ?'RespuestaCorrecta':'RespuestaIncorrecta';
         let innerTarget = ans.isCorrect ?'¡Correcto!':'¡Incorrecto!';
-        totalErrors += ans.isCorrect? 0 : 1;
-        AnimateAnswer(element, classTarget, innerTarget, ans.text);
-        AccumTime(timeByAns-timeleft-1)
-        streak = ans.isCorrect? streak + 1 : 0;
+        AnimateAnswer(element, classTarget, innerTarget, ans.text, 300);
         if (ans.isCorrect)
             AccumPoints(timeleft+1,pointsBySuccess)
     }
 
-    
-    function ConmuteClassAndInner(element, c1, c2, in1){
-        element.classList.add(c1)
-        element.classList.remove(c2)
-        element.innerHTML = in1
-    }
-    /////////////////////////
-    function LoadQuestions(data){
-        Questions = data[0].Questions;
-        // console.log(Questions);
-    }
 
-    function SetQuestionAndAnswers(question) {
+    const SetQuestionAndAnswers = (question)=>{
         document.getElementById('Pregunta').innerHTML = question.statement;
         for(let ans of question.Answers){
             InsertElement('div',['space'+(ans.id === '0'?'2vh':'1vh')],'',document.getElementById('answersList'));
@@ -265,20 +223,3 @@
         }
     }
 
-function InsertElement(tagToAdd, listClasses, content, targetParent, nameId ) {
-    // Create element
-    const el = document.createElement(tagToAdd);
-    
-    // Add classes to element
-    el.classList.add(...listClasses);
-    
-    if( nameId !==undefined)
-        el.id = nameId
-    // Set the innerHTML of the element
-    el.innerHTML = content;
-    // Or add text content to element
-    // el.textContent = content;
-    // add element to DOM
-    targetParent.appendChild(el);
-    return el;
-}
