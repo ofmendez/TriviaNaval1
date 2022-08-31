@@ -1,8 +1,7 @@
-import {b64DecodeUnicode } from "./codification.js";
-import * as views from "./views.js";
-import {loadDataFile} from './files.js'
 import {InsertElement, RandomInt, ConmuteClassAndInner, AnimateWithTransparent, emailToId} from './utils.js'
 import {createUserData ,getUserData, updateScore} from "./database.js";
+import {loadDataFile} from './files.js'
+import * as views from "./views.js";
 
 
 let Questions = {}    
@@ -224,7 +223,7 @@ const RunTimer = (question)=>{
             UpdateStatus(question, timeByAns, false)
             AnimateAnswer(document.getElementById('Pregunta'),'RespuestaIncorrecta','¡Incorrecto!', question.statement, 300);
         }
-    }, 1000);
+    }, 1000);//Second by second
 }
 
 const Answer = (ans, question)=>{
