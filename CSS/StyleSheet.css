@@ -169,7 +169,7 @@ input, .Desplegable {
 	border: 0.5vh solid white;
 	background-color: #ffffff52;
 	border-radius: 50px;
-	padding: 12px 25px 12px 25px;
+	padding: 12px 25px 12px 25px ! important;
 	width: 87%;
 }
 ::placeholder, 
