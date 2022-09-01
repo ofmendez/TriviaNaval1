@@ -1,5 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-app.js'
-import { getDatabase, set, ref, onValue, child, push, update } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-database.js'
+import { getDatabase, set, ref, onValue, child, push, update, remove } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-database.js'
 import {loadCredentials} from './files.js'
 
 let firebaseConfig = {}
@@ -42,12 +42,19 @@ export function getUserData() {
 export function updateScore(userId, newScore) {
     return new Promise((resolve,reject)=>{
         getDB().then((db)=>{
-            const newPostKey = push(child(ref(db), userId)).key;
             const updates = {};
             updates['/users/' + userId+'/score'] = newScore;
             update(ref(db), updates).then(()=>{
                 resolve("Updated!! ")
             });
+        }).catch((e)=> reject("error getDB: "+e))
+    });
+}
+
+export function DeleteUser(userId) {
+    return new Promise((resolve,reject)=>{
+        getDB().then((db)=>{
+            set(ref(db, 'users/' + userId),  null ).then((res)=> resolve("DELETED!!"));
         }).catch((e)=> reject("error getDB: "+e))
     });
 }
