@@ -54,7 +54,8 @@ const Login = (form)=>{
         form.elements['idCorreo'].value,
         form.elements['idNombreCompleto'].value,
         form.elements['idEmpresa'].value,
-        form.elements['idAssesment'].value
+        form.elements['idAssesment'].value,
+        form.elements['idMailbox'].value
     ).then((res)=>{
         userID = emailToId(form.elements['idCorreo'].value);
         views.GoTo("Instrucciones01")

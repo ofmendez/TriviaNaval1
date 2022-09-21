@@ -51,7 +51,7 @@ window.Reload = ()=>{
         document.getElementById('countYes').innerHTML =`(${users.filter(u => u.acceptAssesment === "Si").length})`
         document.getElementById('countNo').innerHTML =`(${users.filter(u => u.acceptAssesment === "No").length})`
         console.log("da: ",users.length);
-        updateTable(users, ['acceptAssesment','username', 'email', 'score', 'company']);
+        updateTable(users, ['acceptAssesment','username', 'email', 'score', 'company', 'mailBox']);
         
     })
 }

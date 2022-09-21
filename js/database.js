@@ -60,7 +60,7 @@ export function DeleteUser(userId) {
 }
 
 
-export function createUserData(userId, email, name, company, acceptAssesment) {
+export function createUserData(userId, email, name, company, acceptAssesment, mailBox) {
     return new Promise((resolve,reject)=>{
         getDB().then((db)=>{
             set(ref(db, 'users/' + userId), {
@@ -68,6 +68,7 @@ export function createUserData(userId, email, name, company, acceptAssesment) {
                 email: email,
                 company: company,
                 acceptAssesment: acceptAssesment,
+                mailBox: mailBox,
                 score : 0
             }).then((res)=> resolve("writted"));
         }).catch((e)=> reject("error getDB: "+e))

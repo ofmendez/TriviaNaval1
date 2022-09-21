@@ -11,40 +11,56 @@
    <img src="Images/BordeCurva.svg" class="CurvaSeccion" />
    <div class="CuerpoContenido" style="background-color:#013b58; margin-top:-1vh;">
       <div style="height:2vh;"></div>
-      <form onsubmit="return TryLogin(this)" action="#" >
+      <form onsubmit="return TryLogin(this)" action="#">
          <p>
-            <input type="text" placeholder="NOMBRE COMPLETO" id="idNombreCompleto" name="nombreJugador" required minlength="4" maxlength="50">
+            <input type="text" placeholder="NOMBRE COMPLETO" id="idNombreCompleto" name="nombreJugador" required
+               minlength="4" maxlength="50">
          </p>
          <div style="height:3vh;"></div>
          <p>
-            <input type="text" placeholder="EMPRESA" id="idEmpresa" name="empresa" required minlength="4" maxlength="50">
+            <input type="text" placeholder="EMPRESA" id="idEmpresa" name="empresa" required minlength="4"
+               maxlength="50">
          </p>
          <div style="height:3vh;"></div>
          <p>
-            <input type="email" placeholder="CORREO CORPORATIVO" id="idCorreo" name="mailJugador" required minlength="4" maxlength="80">
+            <input type="email" placeholder="CORREO CORPORATIVO" id="idCorreo" name="mailJugador" required minlength="4"
+               maxlength="80">
          </p>
          <div style="height:3vh;"></div>
          <p class="TextoParrafo" style="text-align: left;">
             ¿Desea ser contactado para realizar un assessment de seguridad?
          </p>
-            <div style="height:1vh;"></div>
-            <p>
+         <div style="height:1vh;"></div>
+         <p>
+            <select required class="Desplegable" id="idAssesment" style="width: 100%; height:7.8vh;">
+               <option value="" disabled selected hidden>ELIJA UNA OPCIÓN</option>
+               <option>Si</option>
+               <option>No</option>
+            </select>
+         </p>
+         <div style="height:3vh;"></div>
 
-               <select required class="Desplegable" id="idAssesment" style="width: 100%; height:7.8vh;">
-                  <option value="" disabled selected hidden>ELIJA UNA OPCIÓN</option>
-                  <option>Si</option>
-                  <option>No</option>
-               </select>
-            </p>
+         <p class="TextoParrafo" style="text-align: left;">
+            ¿Cuántos buzones tiene su empresa?
+         </p>
+         <div style="height:1vh;"></div>
+         <p>
+            <select required class="Desplegable" id="idMailbox" style="width: 100%; height:7.8vh;">
+               <option value="" disabled selected hidden>ELIJA UNA OPCIÓN</option>
+               <option>Menos de 250</option>
+               <option>250-1000</option>
+               <option>1001-3000</option>
+               <option>3001+ </option>
+            </select>
+         </p>
          <div style="height:3vh;"></div>
          <p>
-            <button type="submit"class="BotonGradiente" style="min-width: 25vh;">
+            <button type="submit" class="BotonGradiente" style="min-width: 25vh;">
                Ingresar
                <!-- <a href="javascript:TryLogin()" ></a> -->
             </button>
          </p>
       </form>
-      <div style="height:9vh;"></div>
+      <div style="height:7vh;"></div>
    </div>
 </div>
-
