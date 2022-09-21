@@ -6,10 +6,22 @@ function updateTable(users, values) {
     const tbody = document.getElementById("t");
     // clear existing data from tbody if it exists
     tbody.innerHTML = "";
-    var p = "";
+    let p = "";
+    let id =1;
     users.forEach(user => {
         p += "<tr>";
+        p += `<td>${id++}</td>`;
             values.forEach(value => {
+                if (value === 'acceptAssesment'){
+                    if( user[value] ==="Si"){
+                        p += "<td>Si</td>";
+                        p += "<td>&nbsp;</td>";
+                    }else{
+                        p += "<td>&nbsp;</td>";
+                        p += "<td>No</td>";
+                    }
+                    return;
+                } 
                 p += "<td>" + user[value] + "</td>";
             })
         p += `<td><button onclick="Delete('${user["email"]}')">DELETE!</button></td>`;
@@ -27,13 +39,19 @@ window.Delete = (email)=>{
 }
 
 window.Reload = ()=>{
-    getUserData().then((usrs)=>{
+    getUserData().then((usrObj)=>{
         let users = []
-        for (const u in usrs) 
-            if (usrs.hasOwnProperty(u)) 
-                users.push(usrs[u]);
+        let usersYes = []
+        for (const u in usrObj) 
+            if (usrObj.hasOwnProperty(u)) 
+                users.push(usrObj[u]);
+            
+        
         users.sort((a, b) => { return b.score - a.score; });
-        updateTable(users, ['username', 'email', 'score', 'company']);
+        document.getElementById('countYes').innerHTML =`(${users.filter(u => u.acceptAssesment === "Si").length})`
+        document.getElementById('countNo').innerHTML =`(${users.filter(u => u.acceptAssesment === "No").length})`
+        console.log("da: ",users.length);
+        updateTable(users, ['acceptAssesment','username', 'email', 'score', 'company']);
         
     })
 }
@@ -47,7 +65,7 @@ function example() {
         }
     }).then((res) => {
         res.json().then((data) => {
-            updateTable(data.Items, ['email', 'score', 'timestamp', 'timestamp']);
+            updateTable(data.Items, [ 'acceptAssesment', 'email', 'score', 'timestamp', 'timestamp']);
         }).catch((err) => {
             console.log("ERROR: " + err);
         });

@@ -14,10 +14,17 @@
 </head>
 
 <body>
+    <!-- <input type="checkbox" id="modal">
+<label for="modal" class="example-label">Open Modal</label>
+<label for="modal" class="modal-background"></label> -->
+        <button type="checkbox" id="modal"> MODAL</button>
     <table id="TablaUsuariosRegistrados" align="center" border="1">
         <button onclick="Reload()">RELOAD! </button>
         <thead>
             <tr>
+                <th>Id</th>
+                <th><span>Si</span><br/> <span id="countYes"></span></th>
+                <th><span>No</span><br/> <span id="countNo" ></span></th>
                 <th>Nombre</th>
                 <th>Correo</th>
                 <th>Puntaje</th>
@@ -28,5 +35,15 @@
         <tbody id="t">
         </tbody>
     </table>
+
+    <!-- <div class="modal">
+        <div class="modal-header">
+            <h3>Modal Title</h3>
+            <label for="modal">
+            </label>
+        </div>
+        <p>Content for the modal</p>
+    </div> -->
 </body>
 </html>
+
